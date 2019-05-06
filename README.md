@@ -3,9 +3,7 @@
 ## users_table
 |Column|Type|Option|
 |------|----|------|
-|id|integer|null: false|
 |name|string|null: false|
-|password|string|null: false|
 
 ### Association
 - has_many :messages
@@ -18,9 +16,8 @@
 ## groups_table
 |Column|Type|Option|
 |------|----|------|
-|id|integer|null: false|
-|group_name|string|null: false|
-|groups_users_id|integer|null: false, foreign_key: true|
+|name|string|null: false|
+|message_id|references|foreign_key: true|
 
 ### Association
 - has_many :messages
@@ -30,9 +27,8 @@
 ## groups_users_table
 |Column|Type|Option|
 |------|----|------|
-|id|integer|null: false|
-|group_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
+|group_id|references|foreign_key: true|
+|user_id|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -41,11 +37,10 @@
 ## messages_table
 |Column|Type|Option|
 |------|----|------|
-|id|integer|null: false|
-|body|text|null: false|
+|body|text|
 |image|string|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|foreign_key: true|
+|group_id|references|foreign_key: true|
 
 ### Association
 - belongs_to :user
